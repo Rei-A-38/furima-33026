@@ -19,17 +19,16 @@
 ## items テーブル
 
 | Column             | Type           | Options     |
-| ------------------ | -------------- | ----------- |
-| title              | string         | null: false |
-| detail             | text           | null: false |
-| category_id        | integer        | null: false |
-| condition_id       | integer        | null: false |
-| shipping_fee_id    | integer        | null: false |
-| prefecture_id      | integer        | null: false |
-| delivery_time_id   | integer        | null: false |
-| price              | integer        | null: false |
-| user_id            | integer        | null: false |
-| image              | ActiveStorage  | 
+| ------------------ | -------------- | ----------------- |
+| title              | string         | null: false       |
+| detail             | text           | null: false       |
+| category_id        | integer        | null: false       |
+| condition_id       | integer        | null: false       |
+| shipping_fee_id    | integer        | null: false       |
+| prefecture_id      | integer        | null: false       |
+| delivery_time_id   | integer        | null: false       |
+| price              | integer        | null: false       |
+| user_id            | integer        | foreign_key: true |
 
 
 ### Association
@@ -39,10 +38,10 @@
 
 ## purchases テーブル
 
-| Column       | Type            | Options     |
-| ------------ | --------------  | ----------- |
-| user_id      | integer         | null: false |
-| item_id      | integer         | null: false |
+| Column       | Type            | Options           |
+| ------------ | --------------  | ----------------- |
+| user_id      | integer         | foreign_key: true |
+| item_id      | integer         | foreign_key: true |
 
 ### Association
 
@@ -53,15 +52,15 @@
 
 ## addresses テーブル
 
-| Column          | Type          | Options     |
-| --------------- | ------------- | ----------- |
-| prefecture_id   | integer       | null: false |
-| postal_code     | string        | null: false |
-| city            | string        | null: false |
-| house_number    | string        | null: false |
-| building_name   | string        | null: false |
-| phone_number    | string        | null: false |
-| purchase        | references    | null: false |
+| Column          | Type          | Options           |
+| --------------- | ------------- | ----------------- |
+| prefecture_id   | integer       | null: false       |
+| postal_code     | string        | null: false       |
+| city            | string        | null: false       |
+| house_number    | string        | null: false       |
+| building_name   | string        | 
+| phone_number    | string        | null: false       |
+| purchase        | references    | foreign_key: true |
 
 
 ### Association
