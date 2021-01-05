@@ -27,9 +27,8 @@
 | shipping_fee_id    | integer        | null: false |
 | prefecture_id      | integer        | null: false |
 | delivery_time_id   | integer        | null: false |
-| condition          | text           | null: false |
 | price              | integer        | null: false |
-| user_id            | string         | null: false |
+| user_id            | integer        | null: false |
 | image              | ActiveStorage  | 
 
 
@@ -40,28 +39,29 @@
 
 ## purchases テーブル
 
-| Column       | Type           | Options     |
-| ------------ | -------------- | ----------- |
-| user_id      | string         | null: false |
-| item_id      | string         | null: false |
+| Column       | Type            | Options     |
+| ------------ | --------------  | ----------- |
+| user_id      | integer         | null: false |
+| item_id      | integer         | null: false |
 
 ### Association
 
 - has_one :address
 - belongs_to :user
-- has_many :items
+- belongs_to :item
 
 
 ## addresses テーブル
 
 | Column          | Type          | Options     |
 | --------------- | ------------- | ----------- |
-| prefecture_id   | string        | null: false |
-| postal_code     | integer       | null: false |
+| prefecture_id   | integer       | null: false |
+| postal_code     | string        | null: false |
 | city            | string        | null: false |
 | house_number    | string        | null: false |
+| building_name   | string        | null: false |
 | phone_number    | string        | null: false |
-| purchase        | reference     | 
+| purchase        | references    | null: false |
 
 
 ### Association
