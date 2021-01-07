@@ -18,7 +18,7 @@
 
 ## items テーブル
 
-| Column             | Type           | Options     |
+| Column             | Type           | Options           |
 | ------------------ | -------------- | ----------------- |
 | title              | string         | null: false       |
 | detail             | text           | null: false       |
