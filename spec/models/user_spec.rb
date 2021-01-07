@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
       @user.password = 'aaaaaa'
       @user.password_confirmation = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定して下さい')
     end
 
     it 'passwordとpassword_confirmationが一致しなければ登録できない' do
@@ -63,10 +63,24 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
+    it 'passwordが存在しても数字だけでは登録できない' do
+      @user.password = 'aaaaaa'
+      @user.password_confirmation = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定して下さい')
+    end
+
+    it 'passwordが存在しても全角では登録できない' do
+      @user.password = 'ああああああ'
+      @user.password_confirmation = 'ああああああ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には半角文字を使用して下さい')
+    end
+
     it '姓がないと登録できない' do
       @user.kanji_sei = nil
       @user.valid?
-      expect(@user.errors.full_messages).to include("Kanji sei can't be blank", 'Kanji sei 全角文字を使用してください')
+      expect(@user.errors.full_messages).to include("Kanji sei can't be blank", 'Kanji sei 全角文字を使用して下さい')
     end
 
     it '名がないと登録できない' do
@@ -78,13 +92,13 @@ RSpec.describe User, type: :model do
     it '姓は全角でないと登録できない' do
       @user.kanji_sei = 'kana'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Kanji sei 全角文字を使用してください')
+      expect(@user.errors.full_messages).to include('Kanji sei 全角文字を使用して下さい')
     end
 
     it '名は全角でないと登録できない' do
       @user.kanji_mei = 'kana'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Kanji mei 全角文字を使用してください')
+      expect(@user.errors.full_messages).to include('Kanji mei 全角文字を使用して下さい')
     end
 
     it 'フリガナ（姓）が空だと登録できない' do
