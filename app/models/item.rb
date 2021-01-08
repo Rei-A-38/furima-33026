@@ -15,11 +15,12 @@ class Item < ApplicationRecord
   validates :detail, presence:true
   validates :price,  presence: true
 
-  PASSWORD_REGEX = /\A[-]?[0-9]+(\.[0-9]+)?\z/.freeze
-  validates_format_of :price, with: PASSWORD_REGEX, message: 'Half-width number'
+  validates :price, numericality: { only_integer: true, message: 'is invalid. Half-width number' }
 
-  validates :price, numericality: { less_than_or_equal_to: 300, greater_than_or_equal_to: 9999999 , message: 'Out of setting range'}
+  # PASSWORD_REGEX = /\A[-]?[0-9]+(\.[0-9]+)?\z/.freeze
+  # validates_format_of :price, with: PASSWORD_REGEX, message: 'Half-width number'
 
+  validates :price, numericality: { less_than_or_equal_to: 9999999, greater_than_or_equal_to: 300 , message: 'Out of setting range'}
 
   belongs_to :user
   has_one_attached :image
