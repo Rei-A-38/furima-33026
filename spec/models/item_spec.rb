@@ -69,47 +69,47 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが全角数字だと出品できない' do
-        @item.price = "２０００"
+        @item.price = '２０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Half-width number")
+        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
       end
 
       it 'priceが全角漢字だと出品できない' do
-        @item.price = "三三三三"
+        @item.price = '三三三三'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Half-width number")
+        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
       end
-      
+
       it 'priceが全角カタカナだと出品できない' do
-        @item.price = "アアアア"
+        @item.price = 'アアアア'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Half-width number")
+        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
       end
 
       it 'priceが全角英字だと出品できない' do
-      @item.price = "ａａａａ"
-      @item.valid?
-      #  binding.pry
-      expect(@item.errors.full_messages).to include("Price is invalid. Half-width number")
+        @item.price = 'ａａａａ'
+        @item.valid?
+        #  binding.pry
+        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
       end
 
       it 'priceが半角英字だと出品できない' do
-        @item.price = "aaaa"
+        @item.price = 'aaaa'
         @item.valid?
         #  binding.pry
-        expect(@item.errors.full_messages).to include("Price is invalid. Half-width number")
-        end
+        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
+      end
 
       it 'priceが300円以下だと出品できない' do
-        @item.price = "299"
+        @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
 
       it 'priceが9999999円以上だと出品できない' do
-        @item.price = "10000000"
+        @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
     end
   end
