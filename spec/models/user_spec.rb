@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context '保存できる場合' do
+    context '保存できない場合' do
       it 'nicknameが空では登録できない' do
         @user.nickname = nil
         @user.valid?
