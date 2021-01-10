@@ -94,7 +94,6 @@ RSpec.describe Item, type: :model do
       it 'priceが半角英字だと出品できない' do
         @item.price = 'aaaa'
         @item.valid?
-        #  binding.pry
         expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
       end
 
