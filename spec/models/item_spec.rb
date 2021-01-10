@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    # binding.pry
   end
 
   describe '商品情報入力' do
@@ -33,33 +32,33 @@ RSpec.describe Item, type: :model do
       end
 
       it 'categoryが未選択だと出品できない' do
-        @item.category_id = 0
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it 'conditionが未選択だと出品できない' do
-        @item.condition_id = 0
+        @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
 
       it 'shipping_feeが未選択だと出品できない' do
-        @item.shipping_fee_id = 0
+        @item.shipping_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
+        expect(@item.errors.full_messages).to include('Shipping fee must be other than 1')
       end
 
       it 'prefectureが未選択だと出品できない' do
-        @item.prefecture_id = 0
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
       it 'delivery_timeが未選択だと出品できない' do
-        @item.delivery_time_id = 0
+        @item.delivery_time_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery time can't be blank")
+        expect(@item.errors.full_messages).to include('Delivery time must be other than 1')
       end
 
       it 'priceが空だと出品できない' do
@@ -89,7 +88,6 @@ RSpec.describe Item, type: :model do
       it 'priceが全角英字だと出品できない' do
         @item.price = 'ａａａａ'
         @item.valid?
-        #  binding.pry
         expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
       end
 
@@ -101,13 +99,13 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが300円以下だと出品できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
 
       it 'priceが9999999円以上だと出品できない' do
-        @item.price = '10000000'
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end

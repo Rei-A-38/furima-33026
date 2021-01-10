@@ -10,10 +10,12 @@ class Item < ApplicationRecord
 
   validates :category_id, :condition_id, :delivery_time_id, :prefecture_id, :shipping_fee_id, numericality: { other_than: 1 }
 
-  validates :image,  presence: true
-  validates :title,  presence: true
-  validates :detail, presence: true
-  validates :price,  presence: true
+  with_options presence: true do
+    validates :image
+    validates :title
+    validates :detail
+    validates :price
+  end
 
   validates :price, numericality: { only_integer: true, message: 'is invalid. Half-width number' }
 
