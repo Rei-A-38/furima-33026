@@ -1,6 +1,7 @@
 class UserPurchase
 
   include ActiveModel::Model
+  attr_accessor :token
   attr_accessor :user_id,:item_id,:prefecture_id,:postal_code,:city,:house_number,:building_name,:phone_number
 
   # バリデーションの記載(address,item_id,user_id)
@@ -12,6 +13,7 @@ class UserPurchase
     validates :city,                  format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "can't be blank" }
     validates :house_number         
     validates :phone_number,          format: { with: /\A\d{11}\z/, message: "input only number"}
+    validates :token
   end
 
   def save
