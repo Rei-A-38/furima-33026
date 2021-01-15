@@ -14,6 +14,11 @@ RSpec.describe UserPurchase, type: :model do
         it '正常なデータがあれば登録できる' do
           expect(@user_purchase).to be_valid
         end
+
+        it 'buildig_nameは空でも保存できること' do
+          @user_purchase.building_name = nil
+          expect(@user_purchase).to be_valid
+        end
       end
 
       context '保存できない場合' do
@@ -56,7 +61,12 @@ RSpec.describe UserPurchase, type: :model do
         it 'phone_numberにハイフンが含まれていると保存できないこと' do
           @user_purchase.phone_number = '123-456-890'
           @user_purchase.valid?
-          # binding.pry
+          expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
+        end
+
+        it 'phone_numberが数字以外だと保存できないこと' do
+          @user_purchase.phone_number = 'あああああ'
+          @user_purchase.valid?
           expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
         end
 
@@ -64,6 +74,18 @@ RSpec.describe UserPurchase, type: :model do
           @user_purchase.token = nil
           @user_purchase.valid?
           expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
+        end
+
+        it 'user_idが空では登録できないこと' do
+          @user_purchase.user_id = nil
+          @user_purchase.valid?
+          expect(@user_purchase.errors.full_messages).to include("User can't be blank")
+        end
+
+        it 'item_idが空では登録できないこと' do
+          @user_purchase.item_id = nil
+          @user_purchase.valid?
+          expect(@user_purchase.errors.full_messages).to include("Item can't be blank")
         end
       end
     end
