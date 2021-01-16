@@ -23,8 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # redirect_to root_path unless @item.user_id == current_user.id
-    # redirect_to root_path if current_user.id == @item.user_id && !@item.purchase.nil?
+    # redirect_to root_path unless @item.user_id == current_user.id（復習用に残しているコードです）
     return redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
   end
 
