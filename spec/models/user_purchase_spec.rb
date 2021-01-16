@@ -40,6 +40,12 @@ RSpec.describe UserPurchase, type: :model do
           expect(@user_purchase.errors.full_messages).to include('Prefecture must be other than 1')
         end
 
+        it 'prefectureが空だと保存できないこと' do
+          @user_purchase.prefecture_id = nil
+          @user_purchase.valid?
+          expect(@user_purchase.errors.full_messages).to include("Prefecture can't be blank")
+        end
+
         it 'cityを選択していないと保存できないこと' do
           @user_purchase.city = nil
           @user_purchase.valid?
@@ -69,6 +75,13 @@ RSpec.describe UserPurchase, type: :model do
           @user_purchase.valid?
           expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
         end
+
+        it 'phone_numberが12桁以上だと保存できないこと' do
+          @user_purchase.phone_number = '123456789012'
+          @user_purchase.valid?
+          expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
+        end
+
 
         it 'tokenが空では登録できないこと' do
           @user_purchase.token = nil
