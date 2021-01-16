@@ -4,8 +4,9 @@ class PurchasesController < ApplicationController
 
   def index
     # @item = Item.find(params[:item_id]) # 復習用に残しているコードです
-    redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
-    # return redirect_to root_path if current_user.id == @item.user_id || @item.purchase != nil #復習用に残しているコードです
+    # redirect_to root_path if current_user.id == @item.user_id || @item.purchase.nil?
+    return redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil? # 復習用に残しているコードです
+
     @user_purchase = UserPurchase.new
   end
 
