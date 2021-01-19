@@ -34,31 +34,31 @@ RSpec.describe Item, type: :model do
       it 'categoryが未選択だと出品できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category must be other than 1')
+        expect(@item.errors.full_messages).to include('Category を１つ選んでください')
       end
 
       it 'conditionが未選択だと出品できない' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Condition must be other than 1')
+        expect(@item.errors.full_messages).to include('Condition を１つ選んでください')
       end
 
       it 'shipping_feeが未選択だと出品できない' do
         @item.shipping_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping fee must be other than 1')
+        expect(@item.errors.full_messages).to include('Shipping fee を１つ選んでください')
       end
 
       it 'prefectureが未選択だと出品できない' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
+        expect(@item.errors.full_messages).to include('Prefecture を１つ選んでください')
       end
 
       it 'delivery_timeが未選択だと出品できない' do
         @item.delivery_time_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery time must be other than 1')
+        expect(@item.errors.full_messages).to include('Delivery time を１つ選んでください')
       end
 
       it 'priceが空だと出品できない' do
@@ -70,43 +70,43 @@ RSpec.describe Item, type: :model do
       it 'priceが全角数字だと出品できない' do
         @item.price = '２０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
+        expect(@item.errors.full_messages).to include('Price が正しくありません. 半角数字で入力してください')
       end
 
       it 'priceが全角漢字だと出品できない' do
         @item.price = '三三三三'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
+        expect(@item.errors.full_messages).to include('Price が正しくありません. 半角数字で入力してください')
       end
 
       it 'priceが全角カタカナだと出品できない' do
         @item.price = 'アアアア'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
+        expect(@item.errors.full_messages).to include('Price が正しくありません. 半角数字で入力してください')
       end
 
       it 'priceが全角英字だと出品できない' do
         @item.price = 'ａａａａ'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
+        expect(@item.errors.full_messages).to include('Price が正しくありません. 半角数字で入力してください')
       end
 
       it 'priceが半角英字だと出品できない' do
         @item.price = 'aaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Half-width number')
+        expect(@item.errors.full_messages).to include('Price が正しくありません. 半角数字で入力してください')
       end
 
       it 'priceが300円以下だと出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price の設定が正しくありません')
       end
 
       it 'priceが9999999円以上だと出品できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price の設定が正しくありません')
       end
     end
   end

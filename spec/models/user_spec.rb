@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
       it '姓がないと登録できない' do
         @user.kanji_sei = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Kanji sei can't be blank", 'Kanji sei 全角文字を使用して下さい')
+        expect(@user.errors.full_messages).to include("Kanji sei can't be blank", 'Kanji sei には全角文字を使用して下さい')
       end
 
       it '名がないと登録できない' do
@@ -95,13 +95,13 @@ RSpec.describe User, type: :model do
       it '姓は全角でないと登録できない' do
         @user.kanji_sei = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Kanji sei 全角文字を使用して下さい')
+        expect(@user.errors.full_messages).to include('Kanji sei には全角文字を使用して下さい')
       end
 
       it '名は全角でないと登録できない' do
         @user.kanji_mei = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Kanji mei 全角文字を使用して下さい')
+        expect(@user.errors.full_messages).to include('Kanji mei には全角文字を使用して下さい')
       end
 
       it 'フリガナ（姓）が空だと登録できない' do
@@ -119,13 +119,13 @@ RSpec.describe User, type: :model do
       it '姓のフリガナは全角カタカナで無いと登録できない' do
         @user.katakana_sei = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Katakana sei はカタカナで入力して下さい')
+        expect(@user.errors.full_messages).to include('Katakana sei をカタカナで入力して下さい')
       end
 
       it '名のフリガナは全角カタカナで無いと登録できない' do
         @user.katakana_mei = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Katakana mei はカタカナで入力して下さい')
+        expect(@user.errors.full_messages).to include('Katakana mei をカタカナで入力して下さい')
       end
 
       it '生年月日が無いと登録できない' do

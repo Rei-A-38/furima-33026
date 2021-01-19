@@ -1,0 +1,35 @@
+ja:
+ activerecord:
+   attributes:
+     user:
+       nickname: ニックネーム
+       kanji_sei: 名字
+       kanji_mei: 名前
+       katakana_sei: 名字のフリガナ
+       katakana_mei: 名前のフリガナ
+       birthday: 生年月日
+
+     item:
+       category_id: カテゴリー
+       detail: 商品の説明
+       delivery_time_id: 発送までの日数
+       prefecture_id: 発送元の地域
+       shipping_fee_id: 配送料の負担
+       price: 価格
+       title: 商品名
+       condition_id: 商品の状態
+       image: 出品画像
+
+
+ activemodel:
+   attributes:
+      user_purchase: #フォームオブジェクトのエラーメッセージ日本語化、activemodelを継承していることに注意
+       prefecture_id: 都道府県
+       postal_code: 郵便番号
+       city: 市区町村
+       house_number: 番地
+       building_name: 建物名
+       phone_number: 電話番号
+       token: クレジットカード情報
+
+       
