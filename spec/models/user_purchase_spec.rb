@@ -31,13 +31,13 @@ RSpec.describe UserPurchase, type: :model do
         it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
           @user_purchase.postal_code = '1234567'
           @user_purchase.valid?
-          expect(@user_purchase.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+          expect(@user_purchase.errors.full_messages).to include('Postal code はハイフンを入れてください')
         end
 
         it 'prefectureを選択していないと保存できないこと' do
           @user_purchase.prefecture_id = 1
           @user_purchase.valid?
-          expect(@user_purchase.errors.full_messages).to include('Prefecture must be other than 1')
+          expect(@user_purchase.errors.full_messages).to include('Prefecture を１つ選んでください')
         end
 
         it 'prefectureが空だと保存できないこと' do
@@ -67,19 +67,19 @@ RSpec.describe UserPurchase, type: :model do
         it 'phone_numberにハイフンが含まれていると保存できないこと' do
           @user_purchase.phone_number = '123-456-890'
           @user_purchase.valid?
-          expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
+          expect(@user_purchase.errors.full_messages).to include('Phone number は数字のみ入力してください')
         end
 
         it 'phone_numberが数字以外だと保存できないこと' do
           @user_purchase.phone_number = 'あああああ'
           @user_purchase.valid?
-          expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
+          expect(@user_purchase.errors.full_messages).to include('Phone number は数字のみ入力してください')
         end
 
         it 'phone_numberが12桁以上だと保存できないこと' do
           @user_purchase.phone_number = '123456789012'
           @user_purchase.valid?
-          expect(@user_purchase.errors.full_messages).to include('Phone number input only number')
+          expect(@user_purchase.errors.full_messages).to include('Phone number は数字のみ入力してください')
         end
 
         it 'tokenが空では登録できないこと' do
